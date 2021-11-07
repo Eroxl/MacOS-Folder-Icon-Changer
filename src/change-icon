@@ -12,7 +12,7 @@ def change_icon(image: str, file: str):
         Cocoa.NSImage.alloc().initWithContentsOfFile_(image),
         file, 
         0
-    ) or sys.exit("Unable to set file icon")
+    )
 
 # FIXME: Figure out a better way of doing this that auto generates the message
 if len(sys.argv) < 3:
