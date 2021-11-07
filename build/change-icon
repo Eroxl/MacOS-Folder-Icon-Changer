@@ -23,5 +23,4 @@ if recurssive:
     for file in os.listdir(file_path):
         os.system(f'./_change-icon "{random.choice(image_paths)}" "{os.path.join(file_path, file)}"')
 else:
-    print(f'./_change-icon "{random.choice(image_paths)}" "{file_path}"')
     os.system(f'./_change-icon "{random.choice(image_paths)}" "{file_path}"')
