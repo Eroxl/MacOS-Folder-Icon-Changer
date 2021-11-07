@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+import os
+
+os.system('python3 -m pip install -r ./requirements.txt')
+os.system('cp ./src/change-icon /usr/local/bin')
+
+with open(os.path.expanduser('~/.zshrc'), 'a') as zshrc_file:
+    zshrc_file.write('export PATH="/usr/local/bin/change-icon:$PATH"')
