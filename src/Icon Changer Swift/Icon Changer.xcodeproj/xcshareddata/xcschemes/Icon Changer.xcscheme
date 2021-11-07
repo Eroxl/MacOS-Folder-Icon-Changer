@@ -50,20 +50,6 @@
             ReferencedContainer = "container:Icon Changer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "change-icon"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/evan/Downloads/Projects/Un-Finished\ Projects/MacOS-Folder-Icon-Changer/BrownFolder.png"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/evan/Downloads/Projects/Un-Finished\ Projects/MacOS-Folder-Icon-Changer/"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
