@@ -1,12 +1,10 @@
 #!/usr/bin/env python
-import os
-import random
 import sys
-
+import fire
 import Cocoa
+from pathlib import Path
 
-
-def change_icon(image: str, file: str):
+def change_icon_for_file(image: str, file: str):
     workspace = Cocoa.NSWorkspace.sharedWorkspace()
     workspace.setIcon_forFile_options_(
         Cocoa.NSImage.alloc().initWithContentsOfFile_(image),
@@ -14,24 +12,13 @@ def change_icon(image: str, file: str):
         0
     )
 
-# FIXME: Figure out a better way of doing this that auto generates the message
-if len(sys.argv) < 3:
-    print('ERROR: Invalid Argument Count \n\nOVERVIEW: A command-line tool to automatically change a folder/applications icon\n\nUSAGE: change-icon <image-path> <file-path>\n\nARGUMENTS:\n<image-path>            Path to the new icons image.\n<file-path>             Path to the file you want to icon of updated.')
-    exit(0)
+def change_icon(image_path: str, folder_path: str, file_glob_pattern: str = '*', recursive: bool = False):
+    '''Change the icon of a file / folder or a set of sub files / folders recursively using file_glob_pattern and the recurssive flag'''
+    if recursive:
+        for file_path in Path(folder_path).rglob(file_glob_pattern):
+            change_icon_for_file(image_path, file_path)
+    else:
+        change_icon_for_file(image_path, folder_path)
+        
 
-image_paths = [sys.argv[1]]
-file_path = sys.argv[2]
-
-# NOTE: Optional Arguments
-recursive = '--recursive' in sys.argv # Change all the sub directories as well as files in a directory
-randomize = '--randomize' in sys.argv  # Randomly change the icon from a path of images.
-
-if randomize:
-    image_paths = [os.path.join(image_paths[0], file) for file in os.listdir(image_paths[0]) if file.lower().endswith(('.png', '.jpg', '.jpeg'))]
-
-if recursive:
-    change_icon(random.choice(image_paths), file_path)
-    for file in os.listdir(file_path):
-        change_icon(random.choice(image_paths), os.path.join(file_path, file))
-else:
-    change_icon(random.choice(image_paths), file_path)
+fire.Fire(change_icon)
