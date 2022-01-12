@@ -9,12 +9,12 @@ Install Using The Automatic Script
 ```
 
 #### Installation Description
-The auto installation script auto installs the pip packages from requirements.txt and then copies change-icon into /usr/local/bin/ and then creates a reference to it in ~/.zshrc
+The auto installation script auto installs the pip packages from requirements.txt and then copies change-icon into /usr/local/bin/ and then creates a reference to it in ~/.zshrc if you use a different shell just install it by yourself.
 
 
 ### Usage
 ```bash
-change-icon <image-path> <file-path> --recursive --randomize
+icon IMAGE_PATH FOLDER_PATH <flags>
 ```
 
 #### Parameter Descriptions
@@ -23,7 +23,7 @@ change-icon <image-path> <file-path> --recursive --randomize
     The path to the image you want to set the icon to or path to folder of icons if you're using --randomize
 * ##### * file-path: string
     The path to the file of the icon you want to change
-* ##### --recursive: flag
-    Whether or not to change all sub folders icons
-* ##### --randomize: flag
-    Randomize the image from the folder given in image-path
+* ##### --file_glob_pattern: string (default: '*')
+    The file glob pattern to check when changing the files of sub folders using the --recursive flag
+* ##### --recursive: boolean (default: false)
+    Recursively change all sub folders icons as well based on the --file_glob_pattern provided
